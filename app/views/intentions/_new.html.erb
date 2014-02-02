@@ -1,0 +1,10 @@
+<%= render "/layouts/header" %>
+
+<%= form_for @intention do |f| %>
+
+	<%= f.text_field :name, class: "form-control input-lg", placeholder: "What do you want to do?" %>
+
+	<%= f.submit class: "btn btn-primary" %>
+
+<% end %>
+

@@ -1,0 +1,37 @@
+<%= render "new" %>
+
+
+
+
+<div class="container">
+
+<div class="row">
+
+  	<% @intentions.each do |intention| %>
+
+  	<div class="col-xs-12 col-sm-6 col-md-3">
+
+  	<div class="thumbnail">
+  		<a href="/intentions/<%=intention[:id]%>">
+  			<h3><%=intention.name%></h3>
+		</a>
+	</div>
+	</div>
+
+	<% end %>
+
+	<div class="col-xs-12 col-sm-6 col-md-3">
+
+  	<div class="thumbnail plus">
+  		<a href="/intention/new">
+  			<h3>+</h3>
+		</a>
+	</div>
+
+
+
+
+</div>
+
+
+</div>
