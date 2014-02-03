@@ -1,6 +1,9 @@
 class IntentionsController < ApplicationController
 
 
+	before_filter :check_intention_owner, only: [:destroy, :update, :edit]
+
+
 	def index
 		@intentions = Intention.all
 		@intention = Intention.new
