@@ -1,18 +1,18 @@
 
 <div class="row">
-  <aside class="col-md-4">
+  <div class="col-md-4">
       <h3><%= @user.name %></h3>
       <h3><%= @user.email %></h3>
 
 
-      <% @user.intentions.each do |intention| %>
+      <% @user.intentions.each do |i| %>
 
-      	<h3><%= intention.name %> </h3>
+      	<h3><%= i.name %> </h3>
 
 
       <% end %>
 
 
 
-  </aside>
+  </div>
 </div>

@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  has_secure_password
 
-  has_many :intentions
+
+  has_many :goals
+  has_many :intentions, through: :goals
+
+
+  has_secure_password
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -19,4 +23,8 @@ class User < ActiveRecord::Base
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64
     end
+
+
+
+
 end

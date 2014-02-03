@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203001741) do
+ActiveRecord::Schema.define(version: 20140203200624) do
+
+  create_table "goals", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "intention_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "goals", ["intention_id"], name: "index_goals_on_intention_id"
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id"
 
   create_table "intentions", force: true do |t|
     t.string   "name"
@@ -19,15 +29,19 @@ ActiveRecord::Schema.define(version: 20140203001741) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "locations", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_token"
   end
 
-  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token"
+  end
 
 end
