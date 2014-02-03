@@ -13,7 +13,11 @@ class IntentionsController < ApplicationController
 	def create
 		new_intention = params.require(:intention).permit(:name)
 		@intention = Intention.create(new_intention)
-		redirect_to intention_path(intention.id)
+		redirect_to intention_path(@intention.id)
+	end
+
+	def show
+		@intention = Intention.find(params[:id])
 	end
 
 
