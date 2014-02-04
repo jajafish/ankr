@@ -11,19 +11,25 @@ class IntentionsController < ApplicationController
 
 	def new
 		@intention = Intention.new
+		
 
 	end
 
 	def create
-		
-	#	if signed_in? 
-	#		current.user.intentions << Intention.create
-	#	else
-	#		redirect_to session.new
 
+		if signed_in?
 
 		new_intention = params.require(:intention).permit(:name)
 		@intention = Intention.create(new_intention)
+
+		@intention.users << User.find(current_user.id)
+
+		else
+			redirect_to '/'
+
+		end
+
+
 		redirect_to intention_path(@intention.id)
 
 
