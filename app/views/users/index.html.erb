@@ -1,0 +1,24 @@
+
+  
+<div class="page-header">
+  <h1>People in San Francisco...</h1>
+</div>
+
+
+
+    <div class="row">
+
+      <% @users.reverse.each do |user| %>
+
+        <div class="col-xs-12 col-sm-6 col-md-3">
+
+          <div class="thumbnail">
+            <a href="/users/<%=user[:id]%>">
+            <h3><%=user.name%></h3>
+            </a>
+          </div>
+        </div>
+
+      <% end %>
+
+ 

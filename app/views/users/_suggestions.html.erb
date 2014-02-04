@@ -1,0 +1,11 @@
+<% @user.intentions.each do |i| %>
+	<% suggestions = {} %>
+	<% suggestions[i] = i.users %>
+	<% suggestions[i].each do |u| %>
+		<%= u.name %>
+	<% end %>
+<% end %>
+
+		
+
+

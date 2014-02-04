@@ -1,3 +1,8 @@
+<div class="above">
+</div>
+
+
+
 <%= render "new" %>
 
 
@@ -6,12 +11,17 @@
 
 
 
+
   
+<div class="page-header">
+  <h1>People in San Francisco want to...</h1>
+</div>
+
 
 
     <div class="row">
 
-      <% @intentions.each do |intention| %>
+      <% @intentions.reverse.each do |intention| %>
 
         <div class="col-xs-12 col-sm-6 col-md-3">
 
@@ -24,15 +34,7 @@
 
       <% end %>
 
-  <div class="col-xs-12 col-sm-6 col-md-3">
-
-    <div class="thumbnail plus">
-      <a href="/intention/new">
-        <h3>+</h3>
-      </a>
-    </div>
-
-  </div>
+ 
 
 
 

@@ -1,8 +1,18 @@
-<h1><%=@intention.name%></h1>
+<div class="page-header">
+  <h1>People who want to    <strong><%=@intention.name %></strong>    <small>in San Francisco</small></h1>
+</div>
 
 
-<% @intention.users.each do |u| %>
-
-	<h3><%=u.name%></h3>
-
+<div class="row">
+	<% @intention.users.each do |u| %>
+	<div class="col-xs-12 col-sm-6 col-md-3">
+		<div class="thumbnail">
+			<a href="/users/<%=u[:id]%>">
+				<h3><%=u.name%></h3>
+			</a>
+		</div>
+	</div>
 <% end %>
+
+
+

@@ -12,12 +12,17 @@ class UsersController < ApplicationController
     new_user = params.require(:user).permit(:name, :email, :password, :password_confirmation)
     @user=User.new(new_user)
     if @user.save
-      flash[:success] = "Welcome to the Cook Book app!"
+      flash[:success] = "Welome to the app"
       sign_in @user
       redirect_to @user
     else
       render'new'
     end
+  end
+
+  def index
+    @users = User.all
+    @user = User.new
   end
 
   def update

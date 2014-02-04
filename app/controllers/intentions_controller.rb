@@ -20,13 +20,21 @@ class IntentionsController < ApplicationController
 		if signed_in?
 
 		new_intention = params.require(:intention).permit(:name)
-		@intention = Intention.create(new_intention)
 
-		@intention.users << User.find(current_user.id)
+		desired_intention = Intention.find_by_name(:name)
 
-		else
-			redirect_to '/'
+			if desired_intention.blank?
+			@intention = Intention.create(new_intention)
+			@intention.users << User.find(current_user.id)
+				
+			
+			elsif
+				desired_intention.users << User.find(current_user.id)
 
+			else
+				redirect_to '/'
+
+			end
 		end
 
 

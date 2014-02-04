@@ -1,3 +1,5 @@
+include SessionsHelper
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-header">
     <a class="navbar-brand" href="/">Intention Engine</a>
@@ -10,7 +12,7 @@
   <div class="navbar-header navbar-right">
     <% if signed_in? %>
       <p class="navbar-text">
-        <%= link_to "My profile", current_user %>
+        <%= link_to "Me", current_user %>
       </p>
       <p class="navbar-text">
         <%= link_to "Sign out", signout_path, method: "delete" %>
