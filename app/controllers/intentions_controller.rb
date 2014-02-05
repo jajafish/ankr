@@ -28,30 +28,23 @@ class IntentionsController < ApplicationController
 			@intention.users << User.find(current_user.id)
 				
 			
-			elsif
-				desired_intention.users << User.find(current_user.id)
-
 			else
-				redirect_to '/'
+				desired_intention.users << User.find(current_user.id)
+				@intention = desired_intention
 
 			end
-		end
-
-
+		
 
 		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
-	  headers: { 
-	    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
-	  },
-	  parameters: { 
-	    "text" => @intention.name
-	  }
-
+			  headers: { 
+			    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
+			  },
+			  parameters: { 
+			    "text" => @intention.name
+			  }
 
 	 
-
 	  	response.body["topic"].each do |k,v|
-
 
   			returned_word = Word.create(name: k)
 
@@ -64,8 +57,9 @@ class IntentionsController < ApplicationController
 	  	# 	all_intentions << word.intentions 
 	  	# end
 	  	
-
 		redirect_to intention_path(@intention.id)
+
+		end
 
 	end
 
@@ -74,9 +68,15 @@ class IntentionsController < ApplicationController
 
 	def show
 		@intention = Intention.find(params[:id])
+		intention_words = @intention.words
 
+		intention_words.each do |int|
+			@related_intentions = int.intentions 
+		end
+	
 
-	  	end
+	end
+
 
 
 
