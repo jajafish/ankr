@@ -37,6 +37,10 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'unirest'
 
+gem 'omniauth'
+
+gem 'omniauth-facebook', '1.4.0'
+
 
 group :development do
 	gem 'better_errors'

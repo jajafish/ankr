@@ -59,6 +59,12 @@ class IntentionsController < ApplicationController
 
 	  	end
 
+	  	all_intentions = []
+	  	@intention.words.each	do |word|
+	  		all_intentions << word.intentions 
+	  	end
+	  	
+
 		redirect_to intention_path(@intention.id)
 
 	end
@@ -68,6 +74,19 @@ class IntentionsController < ApplicationController
 
 	def show
 		@intention = Intention.find(params[:id])
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	  	end
 
@@ -118,7 +137,7 @@ class IntentionsController < ApplicationController
 
 
 
-	 def destroy
+def destroy
 	intention = Intention.find(params[:id])
 	if current_user.intentions.include? intention
     	intention.delete
