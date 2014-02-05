@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140203200624) do
+ActiveRecord::Schema.define(version: 20140205022808) do
 
   create_table "goals", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20140203200624) do
     t.datetime "updated_at"
   end
 
+  create_table "matches", force: true do |t|
+    t.integer  "word_id"
+    t.integer  "intention_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "matches", ["intention_id"], name: "index_matches_on_intention_id"
+  add_index "matches", ["word_id"], name: "index_matches_on_word_id"
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -42,6 +52,12 @@ ActiveRecord::Schema.define(version: 20140203200624) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
+  end
+
+  create_table "words", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

@@ -42,11 +42,72 @@ class IntentionsController < ApplicationController
 
 
 
+
 	end
 
 	def show
 		@intention = Intention.find(params[:id])
+
+
+		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
+		  headers: { 
+		    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
+		  },
+		  parameters: { 
+		    "text" => @intention.name
+		  }
+
+
+	  	@relevant = response.body["topic"].keys
+
+
+# [1] pry(#<IntentionsController>)> response
+# => #<Unirest::HttpResponse:0x007fbe03aa70f8
+#  @body=
+#   {"keyword"=>{"bowling"=>1},
+#    "topic"=>
+#     {"game"=>11,
+#      "golf"=>10,
+#      "play"=>10,
+#      "sport"=>8,
+#      "water"=>8,
+#      "club"=>8,
+#      "ball"=>7,
+#      "swimming"=>7,
+#      "pool"=>5,
+#      "diving"=>5},
+#    "result_code"=>"200",
+#    "result_msg"=>"Success"},
+#  @code=200,
+#  @headers=
+#   {:content_type=>"text/html; charset=utf-8",
+#    :date=>"Wed, 05 Feb 2014 00:05:51 GMT",
+#    :server=>"Apache",
+#    :x_mashape_proxy_response=>"false",
+#    :x_mashape_version=>"3.1.11",
+#    :x_powered_by=>"PHP/5.3.9",
+#    :content_length=>"179",
+#    :connection=>"keep-alive"},
+#  @raw_body=
+#   "{\"keyword\":{\"bowling\":1},\"topic\":{\"game\":11,\"golf\":10,\"play\":10,\"sport\":8,\"water\":8,\"club\":8,\"ball\":7,\"swimming\":7,\"pool\":5,\"diving\":5},\"result_code\":\"200\",\"result_msg\":\"Success\"}">
+
+
+
 	end
+
+
+	 def destroy
+	intention = Intention.find(params[:id])
+	if current_user.intentions.include? intention
+    	intention.delete
+    end
+    redirect_to(root)
+  end
+
+
+
+
+
 
 
 

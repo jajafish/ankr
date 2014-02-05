@@ -31,5 +31,17 @@ class UsersController < ApplicationController
     render :show
   end
 
+
+  def destroy
+    user = User.find(params[:id])
+    intention = Intention.find_by_name(user.intentions)
+    intention.destroy
+
+  end
+
+
+
+
+
 end
 

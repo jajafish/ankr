@@ -1,8 +1,8 @@
 Ankr::Application.routes.draw do
 
-  root 'intentions#index'
+  resources :users, :intentions, :sessions, :matches
 
-  resources :users, :intentions, :sessions
+  root 'intentions#index'
 
   get '/signup' => 'users#new'
   match '/signout', to: 'sessions#destroy', via: :delete

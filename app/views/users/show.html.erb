@@ -14,13 +14,13 @@
       			<a href="/intentions/<%=i[:id]%>">
       				<h3><%=i.name%></h3>
   				</a>
-                        <p><%=i.users.count-1%> other people want to do this</p>
+            <p><%=i.users.count-1%> other people want to do this</p>
 
 
 
 
 
-                        <li><%= link_to('Delete Intention', @intention, :method => :delete, :confirm => 'Are you sure?') %></li>
+            <li><%= link_to('Delete Intention', intention_path(i.id) , :method => :delete, :confirm => 'Are you sure?') %></li>
 
 
 
