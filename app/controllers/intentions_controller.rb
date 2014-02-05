@@ -59,10 +59,10 @@ class IntentionsController < ApplicationController
 
 	  	end
 
-	  	all_intentions = []
-	  	@intention.words.each	do |word|
-	  		all_intentions << word.intentions 
-	  	end
+	  	# all_intentions = []
+	  	# @intention.words.each	do |word|
+	  	# 	all_intentions << word.intentions 
+	  	# end
 	  	
 
 		redirect_to intention_path(@intention.id)
@@ -74,18 +74,6 @@ class IntentionsController < ApplicationController
 
 	def show
 		@intention = Intention.find(params[:id])
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	  	end
