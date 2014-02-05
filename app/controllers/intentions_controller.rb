@@ -38,27 +38,42 @@ class IntentionsController < ApplicationController
 		end
 
 
+
+		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
+	  headers: { 
+	    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
+	  },
+	  parameters: { 
+	    "text" => @intention.name
+	  }
+
+
+	 
+
+	  	response.body["topic"].each do |k,v|
+
+
+  			returned_word = Word.create(name: k)
+
+  			@intention.words << returned_word
+
+	  	end
+
 		redirect_to intention_path(@intention.id)
 
-
-
-
 	end
+
+
+
 
 	def show
 		@intention = Intention.find(params[:id])
 
-
-		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
-		  headers: { 
-		    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
-		  },
-		  parameters: { 
-		    "text" => @intention.name
-		  }
+	  	end
 
 
-	  	@relevant = response.body["topic"].keys
+
+
 
 
 # [1] pry(#<IntentionsController>)> response
@@ -93,7 +108,14 @@ class IntentionsController < ApplicationController
 
 
 
-	end
+
+
+
+
+
+
+
+
 
 
 	 def destroy
