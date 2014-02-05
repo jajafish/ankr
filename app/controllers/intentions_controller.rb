@@ -23,6 +23,8 @@ class IntentionsController < ApplicationController
 
 		desired_intention = Intention.find_by_name(:name)
 
+	end
+
 			if desired_intention.blank?
 			@intention = Intention.create(new_intention)
 			@intention.users << User.find(current_user.id)
@@ -46,9 +48,17 @@ class IntentionsController < ApplicationController
 	 
 	  	response.body["topic"].each do |k,v|
 
-  			returned_word = Word.create(name: k)
+	  		# check if this word exists in the word table,
+	  		# if it does, add it to the intention being created
+	  		# if not, create it and then add it
 
-  			@intention.words << returned_word
+	  		returned_word = Word.find_by_k(name: k)
+
+  			if returned_word.blank?
+  				@intention.words << returned_word
+			else
+				returned_word = Word.create(name: k)
+				@intention.words << returned_word
 
 	  	end
 
@@ -61,19 +71,21 @@ class IntentionsController < ApplicationController
 
 		end
 
-	end
+end
 
 
 
 
 	def show
 		@intention = Intention.find(params[:id])
-		intention_words = @intention.words
+		@intention_words = @intention.words
 
-		intention_words.each do |int|
-			@related_intentions = int.intentions 
+		
+
+		@intention_words.each do |words|
+			@related_intentions = words.intentions 
 		end
-	
+
 
 	end
 
@@ -131,7 +143,7 @@ def destroy
     	intention.delete
     end
     redirect_to(root)
-  end
+end
 
 
 

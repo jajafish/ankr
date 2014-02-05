@@ -33,30 +33,19 @@
 
     <div class="row">
 
-      <div class="col-xs-12 col-sm-6 col-md-3">
-
-     <a href="/intentions/new"><div class="thumbnail plus">
-        
-          <h3>+</h3>
-        
-      </div>
-
-
-      </div>
-      </a>
+      
 
       <% @intentions.reverse.each do |intention| %>
-      <a href="/intentions/<%=intention[:id]%>">
+
         <div class="col-xs-12 col-sm-6 col-md-3">
 
           <div class="thumbnail">
-            
+            <a href="/intentions/<%=intention[:id]%>">
             <h3><%=intention.name%></h3>
-            
+            </a>
 
 
           </div>
-          </a>
 
        
 

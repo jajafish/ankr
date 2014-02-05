@@ -25,20 +25,27 @@
 
 
 
-<div class="page-header">
-  <h1>People also want to    </h1>
-</div>
-
-<% @related_intentions.each do |int| %>
-<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="thumbnail">
-				<h3><%=int.name%></h3>
-		
-		</div>
-	</div>
+<% @intention_words.each do |word| %>
+<%= word.name %>
 <% end %>
 
 
+
+<% @related_intentions.each do |int| %>
+
+
+<div class="page-header">
+  <h1>People who want to <%= int.name %>  </h1>
+</div>
+
+
+
+
+
+
+
+
+<% end %>
 
 
 
