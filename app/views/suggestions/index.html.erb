@@ -1,0 +1,39 @@
+	<br>  
+
+
+    <ul class="nav nav-tabs">
+      <li><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
+      <li class="active"><a href="/suggestions"> <i class="glyphicon glyphicon-ok"> </i></a></li>
+      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+    </ul>
+
+
+
+<br>
+
+
+	<% @user.intentions.each do |i| %>
+
+		<div class="panel panel-default">
+  			<div class="panel-heading">
+   			   <h3 class="panel-title">People who want to <%= i.name %></h3>
+  			</div>
+  			<div class="panel-body">
+  				<% i.users.each do |u| %>
+   					<div class="col-xs-12 col-sm-6 col-md-3">
+   						<a href="/users/<%=u[:id]%>">
+   						<div class="thumbnail">
+   							<h3><%=u.name%></h3>
+						</div>
+						</a>
+					</div>
+				<% end %>
+
+  			</div>
+		</div>
+		<% end %>
+
+
+
+	
+

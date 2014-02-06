@@ -1,6 +1,6 @@
 Ankr::Application.routes.draw do
 
-  resources :users, :intentions, :sessions, :matches
+  resources :users, :intentions, :sessions, :matches, :suggestions
 
   root 'intentions#index'
 
