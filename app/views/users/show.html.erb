@@ -14,6 +14,22 @@
  -->
 
 
+
+
+<br>  
+
+
+    <ul class="nav nav-tabs">
+      <li><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
+      <li><a href="/intentions"> <i class="glyphicon glyphicon-ok"> </i></a></li>
+      <li class="active"> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+    </ul>
+
+
+
+
+
+
 <div class="container">
 
 
@@ -32,7 +48,7 @@
 
 
 
-  <% if current_user.intentions.length > 1 %>
+  <% if current_user.intentions.length >= 1 %>
 
         <div class="page-header">
           <h1>I'm <%=@user.name %> and I want to... </h1>
@@ -40,7 +56,9 @@
 
 <% else %>
 
-  <p>    hello </p>
+ <div class="page-header">
+          <h1><%=@user.name.capitalize %></h1>
+        </div>
 
   <% end %>
 
@@ -55,7 +73,7 @@
         <div class="col-xs-12 col-sm-6 col-md-3">
         <a href="/intentions/">
         <div class="thumbnail">
-            <h3>+</h3>
+            <h3>Add an intention</h3>
         </div>
         </a>
       </div>

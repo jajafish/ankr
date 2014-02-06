@@ -1,3 +1,25 @@
+<br>  
+
+
+    <ul class="nav nav-tabs">
+      <li><a href="/intentions"> <i class="glyphicon glyphicon-ok"> </i></a></li>
+      <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"> </i></a></li>
+      <li><a href="users/current_user"> <i class="glyphicon glyphicon-user"> </i></a></li>
+
+
+      
+  
+<% if signed_in? %>
+
+    <% end %>
+  </li>
+</ul>
+
+
+
+
+
+
 <div class="page-header">
   <h1><strong> <%=@intention.name %></strong>    <small>in San Francisco</small></h1>
 </div>
@@ -14,7 +36,7 @@
 
 <% if current_user.intentions.include?(@intention)%>
 
-	<%= link_to('I dont want to do this', intention_path(@intention.id) , :method => :delete, :class => "btn btn-primary btn-lg" ) %>
+	<%= link_to('I dont want to do this', intention_path(@intention.id) , :method => :delete, :class => "btn btn-info btn-lg" ) %>
 
 <% end %>
 <% end %>

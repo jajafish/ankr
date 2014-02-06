@@ -2,15 +2,10 @@
 
 
     <ul class="nav nav-tabs">
-      <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"> </i></a></li>
-      <li><a href="users/show"> <i class="glyphicon glyphicon-user"> </i></a></li>
-  
-<% if signed_in? %>
-
-    <% end %>
-  </li>
-</ul>
-
+      <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
+      <li><a href="/intentions"> <i class="glyphicon glyphicon-ok"> </i></a></li>
+      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+    </ul>
 
 
 
