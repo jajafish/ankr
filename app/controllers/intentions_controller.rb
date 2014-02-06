@@ -64,8 +64,8 @@ class IntentionsController < ApplicationController
 	  	end
 
 			else
-
-				flash.now[:error]='Must be logged in'
+				redirect_to '/intentions/false'
+				
 			end
 
 		
@@ -170,7 +170,7 @@ def want_to
 		redirect_to intention_path(@intention.id)
 	else
 		flash.now[:error]='Must be logged in'
-		redirect_to '/w'
+		redirect_to '/'
 	end
 
 end

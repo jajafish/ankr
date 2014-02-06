@@ -1,3 +1,33 @@
+<br>  
+
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"> </i></a></li>
+      <li><a href="users/show"> <i class="glyphicon glyphicon-user"> </i></a></li>
+  
+<% if signed_in? %>
+
+    <% end %>
+  </li>
+</ul>
+
+
+
+
+
+
+
+<!-- 
+<ul class="pager">
+  <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
+  <li><a href="#"><i class="glyphicon glyphicon-plus"></i></a></li>
+</ul> -->
+
+
+
+
+
+
 <div class="container">
 
 
@@ -17,17 +47,43 @@
     </div>
 
 
+<br>
+<br>
+<br>
+
+<!--     <ul class="nav nav-tabs">
+  <li class="active"><a href="#">San Francisco</a></li>
+  <li>
+<% if signed_in? %>
+      <p class="navbar-text">
+        <%= link_to "Me", current_user %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign out", signout_path, method: "delete" %>
+      </p>
+    <% else %>
+      <p class="navbar-text">
+        <%= link_to "Sign up", signup_path %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign in", signin_path %>
+      </p>
+    <% end %>
+  </li>
+</ul> -->
 
 
 
 
 
+<!-- 
+<div class="jumbotron">
   
 <div class="page-header">
   <h1>People in San Francisco want to...</h1>
 </div>
 
-
+ -->
 
 
 
@@ -58,6 +114,8 @@
      </div>
       <% end %>
     </div>
+
+  </div>
 
 
     

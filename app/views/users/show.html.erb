@@ -1,16 +1,59 @@
-<div class="page-header">
-  <h1>I'm <%=@user.name %> and I want to... </h1>
-</div>
+<!--       <p class="navbar-text">
+        <%= link_to "Me", current_user %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign out", signout_path, method: "delete" %>
+      </p>
+    <% else %>
+      <p class="navbar-text">
+        <%= link_to "Sign up", signup_path %>
+      </p>
+      <p class="navbar-text">
+        <%= link_to "Sign in", signin_path %>
+      </p>
+ -->
+
+
+<div class="container">
+
+
+
+<%# if logged in %>
+
+  <% if current_user = @user %>
+
+
+            <%= render 'intentions/new' %>
+      
+
+
+
+  <% end %>
+
+
+
+  <% if current_user.intentions.length > 1 %>
+
+        <div class="page-header">
+          <h1>I'm <%=@user.name %> and I want to... </h1>
+        </div>
+
+<% else %>
+
+  <p>    hello </p>
+
+  <% end %>
+
+ 
 
      
-
 
 
       <div class="row">
 
 
         <div class="col-xs-12 col-sm-6 col-md-3">
-        <a href="/intentions/new">
+        <a href="/intentions/">
         <div class="thumbnail">
             <h3>+</h3>
         </div>
@@ -18,7 +61,7 @@
       </div>
 
 
-        
+
       	<% @user.intentions.each do |i| %>
 
       	<div class="col-xs-12 col-sm-6 col-md-3">
@@ -55,6 +98,7 @@
 
 
 
+</div>
 
 
 
