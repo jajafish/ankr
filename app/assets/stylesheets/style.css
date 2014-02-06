@@ -7,8 +7,36 @@
 
 
 
+.container #new {
+
+	/*background-color: rgba(217,206,213,.2);*/
+
+}
+
+input[type="text"] {
+
+	font-size: 4em;
+	border: 0;
+	height: 230px;
+	font-weight: lighter;
+
+}
 
 
+input[type="text"]:focus {
+
+	box-shadow: none;
+	color: black;
+	font-weight: lighter;
+
+
+	
+}
+
+
+#new_form {
+	background-color: rgba(217,206,213,0);
+}
 
 body {
 /*	background-image: url("friscoblur.jpg");*/
@@ -20,7 +48,8 @@ body {
 
 	max-width: 240px;
 	height: 200px;
-	border: 1px solid black;
+	border: 0px solid black;
+	background-color: rgba(217,206,213,3);
 }
 
 

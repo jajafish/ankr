@@ -5,10 +5,17 @@
 
 
 
-<%= button_to "I want to do it", want_to_path(@intention), :method=>:post %>
+<% unless current_user.intentions.include?(@intention)%>
 
+	<%= button_to "I want to do it", want_to_path(@intention), :method=>:post, :class => "btn btn-primary btn-lg" %>
 
+<% end %>
 
+<% if current_user.intentions.include?(@intention)%>
+
+	<%= link_to('I dont want to do this', intention_path(@intention.id) , :method => :delete, :class => "btn btn-primary btn-lg" ) %>
+
+<% end %>
 
 <br>
 <br>

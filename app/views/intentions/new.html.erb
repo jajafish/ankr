@@ -1,15 +1,16 @@
 
-<br>
-<br>
-<br>
-
 <% if @intention %>
 
-	<%= form_for @intention do |f| %>
+	<div class="container" id="new">
+	
 
-		<%= f.text_field :name, :autofocus=>true, class: "form-control input-lg", placeholder: "What do you want to do?" %>
+	<%= form_for @intention, :html=> {:id => 'new_form'} do |f| %>
+
+		<%= f.text_field :name, :autofocus=>true, class: "form-control input-lg", id: "new_int", placeholder: "What do you want to do?" %>
 
 		<br>
+
+	</div>
 
 
 	<% end %>

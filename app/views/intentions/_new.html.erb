@@ -1,11 +1,15 @@
 
 <% if @intention %>
 
+
+	<div class="container">
+
 	<%= form_for @intention do |f| %>
 
 		<%= f.text_field :name, :autofocus=>true, class: "form-control input-lg", placeholder: "What do you want to do?" %>
 
 		<br>
+	</div>
 
 
 	<% end %>
