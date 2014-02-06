@@ -81,9 +81,9 @@ end
 		@intention_words = @intention.words
 
 		
-
+		@related_intentions = []
 		@intention_words.each do |words|
-			@related_intentions = words.intentions 
+			@related_intentions << words.intentions 
 		end
 
 
@@ -147,6 +147,13 @@ end
 
 
 
+
+def want_to
+	@intention = Intention.find(params[:id])
+	@intention.users << current_user
+	redirect_to user_path(current_user.id)
+
+end
 
 
 

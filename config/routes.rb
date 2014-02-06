@@ -8,6 +8,8 @@ Ankr::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
   get'/signin' => 'sessions#new'
 
+  post '/want_to/:id' => 'intentions#want_to', :as => 'want_to'
+
 
 end
 
