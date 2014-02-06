@@ -1,5 +1,5 @@
 class SuggestionsController < ApplicationController
-
+	include SuggestionsHelper
 
 	def index
 		@user = current_user
@@ -8,9 +8,5 @@ class SuggestionsController < ApplicationController
 
 	end
 
-	def create
-
-	
-	end
 
 end

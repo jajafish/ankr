@@ -5,5 +5,5 @@ class ApplicationController < ActionController::Base
 
 
   require 'unirest'
-  
+
 end

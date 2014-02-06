@@ -34,18 +34,6 @@
 
 
 
-<%# if logged in %>
-
-  <% if current_user = @user %>
-
-
-            <%= render 'intentions/new' %>
-      
-
-
-
-  <% end %>
-
 
 
   <% if current_user.intentions.length >= 1 %>
@@ -56,18 +44,18 @@
 
 <% else %>
 
- <div class="page-header">
-          <h1><%=@user.name.capitalize %></h1>
-        </div>
+      <div class="page-header">
+              <h1><%=@user.name.capitalize %></h1>
+      </div>
 
-  <% end %>
+<% end %>
 
  
 
      
 
 
-      <div class="row">
+      
 
 
         <div class="col-xs-12 col-sm-6 col-md-3">
@@ -89,10 +77,6 @@
   				</a>
             <p><%=i.users.count-1%> other people want to do this</p>
 
-
-
-
-
             <li><%= link_to('Delete Intention', intention_path(i.id) , :method => :delete ) %></li>
 
 
@@ -109,10 +93,10 @@
 
 
 
-
 <div class="page-header">
   <%= @user.email %>
 </div>
+
 
 
 

@@ -14,13 +14,14 @@
 
 
 <%# if the user himself has intentions %>
+
 <% if @user.intentions.count >= 1 %>
 
 
 	<%# if there are in fact matches for this person's intentions %>
 
 
-		<% if !no_suggestions %>
+		<% if !no_matches %>
 
 			<% @user.intentions.each do |i| %>
 
@@ -39,16 +40,14 @@
 								</div>
 							</a>
 							</div>		
-				<% end %>
-			<% end %>
-
+						<% end %>
 
 
 
 	<%# if there are no matches for this person's intentions %>
 
 
-		<% else %>
+		<% end %>
 
 			<p> SOrry friend! Add an intention --- or see if you like any of these or check back later !! </p>
 
@@ -62,22 +61,22 @@
 
 <% else %>
 
-	<h3>There is one quality which one must possess to win, and that is definiteness of purpose, the knowledge of what one wants, and a burning desire to possess it. --- Napoleon Hill</h3>
+		<h3>There is one quality which one must possess to win, and that is definiteness of purpose, the knowledge of what one wants, and a burning desire to possess it. --- Napoleon Hill</h3>
 
-	<br>
+		<br>
 
-  	<div class="row">
+	  	<div class="row">
 
 
-    	<div class="col-xs-12 col-sm-6 col-md-3">
-    		<a href="/intentions/">
-   			 <div class="thumbnail">
-        		<h3>Add an intention</h3>
-    		 </div>
-   			</a>
+        	<div class="col-xs-12 col-sm-6 col-md-3">
+        		<a href="/intentions/">
+       			 <div class="thumbnail">
+            		<h3>Add an intention</h3>
+        		 </div>
+       			</a>
+      		</div>
+
   		</div>
-
-	</div>
 
 
 
