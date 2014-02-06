@@ -23,55 +23,69 @@ class IntentionsController < ApplicationController
 
 		desired_intention = Intention.find_by_name(:name)
 
-	end
+	
 
-			if desired_intention.blank?
-			@intention = Intention.create(new_intention)
-			@intention.users << User.find(current_user.id)
+			if signed_in?
+				if desired_intention.blank?
+				@intention = Intention.create(new_intention)
+				@intention.users << User.find(current_user.id)
 				
 			
-			else
-				desired_intention.users << User.find(current_user.id)
-				@intention = desired_intention
+				else
+					desired_intention.users << User.find(current_user.id)
+					@intention = desired_intention
+				
 
-			end
-		
-
-		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
-			  headers: { 
-			    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
-			  },
-			  parameters: { 
-			    "text" => @intention.name
-			  }
+						response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
+					  headers: { 
+					    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
+					  },
+					  parameters: { 
+					    "text" => @intention.name
+					  }
 
 	 
-	  	response.body["topic"].each do |k,v|
+			  	response.body["topic"].each do |k,v|
 
-	  		# check if this word exists in the word table,
-	  		# if it does, add it to the intention being created
-	  		# if not, create it and then add it
+			  		# check if this word exists in the word table,
+			  		# if it does, add it to the intention being created
+			  		# if not, create it and then add it
 
-	  		returned_word = Word.create(name: k)
+			  		returned_word = Word.create(name: k)
 
-  			if returned_word.blank?
-  				@intention.words << returned_word
-			else
-				returned_word = Word.create(name: k)
-				@intention.words << returned_word
+		  			if returned_word.blank?
+		  				@intention.words << returned_word
+					else
+						returned_word = Word.create(name: k)
+						@intention.words << returned_word
 
+			  		end
+	  		end 
 	  	end
 
-	  	# all_intentions = []
-	  	# @intention.words.each	do |word|
-	  	# 	all_intentions << word.intentions 
-	  	# end
+			else
+
+				flash.now[:error]='Must be logged in'
+			end
+
+		
+
+		
+
+	  
 	  	
-		redirect_to intentions_path
+		redirect_to '/'
 
 		end
 
 end
+
+
+
+	# all_intentions = []
+	  	# @intention.words.each	do |word|
+	  	# 	all_intentions << word.intentions 
+	  	# end
 
 
 
@@ -150,9 +164,14 @@ end
 
 
 def want_to
-	@intention = Intention.find(params[:id])
-	@intention.users << current_user
-	redirect_to intention_path(@intention.id)
+	if signed_in?
+		@intention = Intention.find(params[:id])
+		@intention.users << current_user
+		redirect_to intention_path(@intention.id)
+	else
+		flash.now[:error]='Must be logged in'
+		redirect_to '/w'
+	end
 
 end
 

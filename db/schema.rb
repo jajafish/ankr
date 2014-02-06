@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140205022808) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "goals", force: true do |t|
     t.integer  "user_id"
     t.integer  "intention_id"
@@ -20,8 +23,8 @@ ActiveRecord::Schema.define(version: 20140205022808) do
     t.datetime "updated_at"
   end
 
-  add_index "goals", ["intention_id"], name: "index_goals_on_intention_id"
-  add_index "goals", ["user_id"], name: "index_goals_on_user_id"
+  add_index "goals", ["intention_id"], name: "index_goals_on_intention_id", using: :btree
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
 
   create_table "intentions", force: true do |t|
     t.string   "name"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20140205022808) do
     t.datetime "updated_at"
   end
 
-  add_index "matches", ["intention_id"], name: "index_matches_on_intention_id"
-  add_index "matches", ["word_id"], name: "index_matches_on_word_id"
+  add_index "matches", ["intention_id"], name: "index_matches_on_intention_id", using: :btree
+  add_index "matches", ["word_id"], name: "index_matches_on_word_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"

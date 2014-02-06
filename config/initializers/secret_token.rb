@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Ankr::Application.config.secret_key_base = ENV['SECRET_KEY_BASE']
+Ankr::Application.config.secret_key_base = 'bc31a43314b0750111bf71727364a80c45fba7d97ee96a9af196a5470a6703193f43f57fe57838898290b840b33cd727eeb7ad0e9849feb3f8773f11c3504dda'

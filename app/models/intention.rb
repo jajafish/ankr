@@ -6,5 +6,6 @@ class Intention < ActiveRecord::Base
 	has_many :matches
 	has_many :words, through: :matches
 
+	validates :name, :presence => true
 
 end
