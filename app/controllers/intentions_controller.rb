@@ -52,7 +52,7 @@ class IntentionsController < ApplicationController
 	  		# if it does, add it to the intention being created
 	  		# if not, create it and then add it
 
-	  		returned_word = Word.find_by_k(name: k)
+	  		returned_word = Word.create(name: k)
 
   			if returned_word.blank?
   				@intention.words << returned_word
@@ -67,7 +67,7 @@ class IntentionsController < ApplicationController
 	  	# 	all_intentions << word.intentions 
 	  	# end
 	  	
-		redirect_to intention_path(@intention.id)
+		redirect_to intentions_path
 
 		end
 
@@ -143,7 +143,7 @@ def destroy
 	if current_user.intentions.include? intention
     	intention.delete
     end
-    redirect_to :root
+    redirect_to user_path(current_user)
 end
 
 
