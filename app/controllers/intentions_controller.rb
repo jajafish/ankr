@@ -1,7 +1,7 @@
 class IntentionsController < ApplicationController
 
 
-	before_filter :check_intention_owner, only: [:destroy, :update, :edit]
+	# before_filter :check_intention_owner, only: [:destroy, :update, :edit]
 
 
 	def index
@@ -138,11 +138,12 @@ end
 
 
 def destroy
+	
 	intention = Intention.find(params[:id])
 	if current_user.intentions.include? intention
     	intention.delete
     end
-    redirect_to(root)
+    redirect_to :root
 end
 
 
@@ -151,7 +152,7 @@ end
 def want_to
 	@intention = Intention.find(params[:id])
 	@intention.users << current_user
-	redirect_to user_path(current_user.id)
+	redirect_to intention_path(@intention.id)
 
 end
 
