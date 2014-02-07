@@ -23,62 +23,20 @@ class IntentionsController < ApplicationController
 
 			desired_intention = Intention.find_by_name(:name)
 
-	
-
-			if signed_in?
-				if desired_intention.blank?
+			if desired_intention.blank?
 				@intention = Intention.create(new_intention)
 				@intention.users << User.find(current_user.id)
-				
-			
-				else
-					desired_intention.users << User.find(current_user.id)
-					@intention = desired_intention
-				
-
-						response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
-					  headers: { 
-					    "X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
-					  },
-					  parameters: { 
-					    "text" => @intention.name
-					  }
-
-	 
-			  	response.body["topic"].each do |k,v|
-
-			  		# check if this word exists in the word table,
-			  		# if it does, add it to the intention being created
-			  		# if not, create it and then add it
-
-			  		returned_word = Word.create(name: k)
-
-		  			if returned_word.blank?
-		  				@intention.words << returned_word
-					else
-						returned_word = Word.create(name: k)
-						@intention.words << returned_word
-
-			  		end
-	  		end 
-	  	end
-
+				associate_words(@intention)	
+		
 			else
-				redirect_to '/intentions/false'
-				
-			end
-
-		
-
-		
-
-	  
+				desired_intention.users << User.find(current_user.id)
+			end 
 	  	
-		redirect_to '/'
-
 		end
 
-end
+		redirect_to '/'
+
+	end
 
 
 
@@ -86,8 +44,6 @@ end
 	  	# @intention.words.each	do |word|
 	  	# 	all_intentions << word.intentions 
 	  	# end
-
-
 
 
 	def show
@@ -100,10 +56,36 @@ end
 			@related_intentions << words.intentions 
 		end
 
-
 	end
 
 
+	def associate_words(intention)
+
+		response = Unirest::post "https://twinword-topic-tagging.p.mashape.com/generate/", 
+	  		headers: { 
+	    		"X-Mashape-Authorization" => "5C6dpbqx8WPB9mcS1VKusvceo7B5wT3t"
+	  		},
+	  		parameters: { 
+	   			"text" => @intention.name
+	 		}
+
+	 	response.body["topic"].each do |k,v|
+
+	  		# check if this word exists in the word table,
+	  		# if it does, add it to the intention being created
+	  		# if not, create it and then add it
+
+	  		returned_word = Word.create(name: k)
+
+			if returned_word.blank?
+				@intention.words << returned_word
+			else
+				returned_word = Word.create(name: k)
+				@intention.words << returned_word
+	  		end
+	  	end
+
+	end
 
 
 
@@ -143,21 +125,13 @@ end
 
 
 
-
-
-
-
-
-
-
-
 def destroy
 	
 	intention = Intention.find(params[:id])
 	if current_user.intentions.include? intention
     	intention.delete
-    end
-    redirect_to user_path(current_user)
+	end
+    	redirect_to '/'
 end
 
 
