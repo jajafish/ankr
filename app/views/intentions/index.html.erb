@@ -3,7 +3,7 @@
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
-      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><%="  " + current_user.name %><% end %></li>
+      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
     </ul>
 
 
@@ -96,6 +96,7 @@
           <div class="thumbnail">
             
             <h3><%=intention.name%></h3>
+            <p><%=intention.users.count%> people want to do this</p>
             
 
 

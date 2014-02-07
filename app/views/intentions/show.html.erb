@@ -9,43 +9,50 @@
 
 
       
-
+<%# header for the main intention of this page %>
 
 <div class="page-header">
   <h1>people who want to <strong> <%=@intention.name %></strong></h1>
 </div>
 
 
-
+<%# if the user is signed in  %>
 <% if signed_in? %>
-<% unless current_user.intentions.include?(@intention)%>
 
+	<%# unless the user's intentions already include the current intention  %>
+	<% unless current_user.intentions.include?(@intention)%>
+
+	<%# display a button to add this intention to the user's intentions %>
 	<%= button_to "I want to do it", want_to_path(@intention), :method=>:post, :class => "btn btn-primary btn-lg" %>
 
+	<%# end this unless loop %>
 <% end %>
 
-
+<%# if the user's intentions do already include this intention %>
 <% if current_user.intentions.include?(@intention)%>
 
+	<%# display a button to remove the intention %>
 	<%= link_to('I dont want to do this', intention_path(@intention.id) , :method => :delete, :class => "btn btn-info btn-lg" ) %>
 
+<%# end this sub if loop %>
 <% end %>
+<%# end the main if loop %>
 <% end %>
 
-<% if !signed_in? %>
-
-	<%= button_to "I want to do it", want_to_path(@intention), :method=>:post, :class => "btn btn-primary btn-lg" %>
 
 
 
-<% end %>
 
 <br>
 <br>
 
 
+
+<%# make the basic row that will contain the people%>
 <div class="row">
+	<%# the each loop through the intention's users %>
 	<% @intention.users.each do |u| %>
+	<%# each user will be in a thumbnail inside a column %>
 	<div class="col-xs-12 col-sm-6 col-md-3">
 		<div class="thumbnail">
 			<a href="/users/<%=u[:id]%>">
@@ -58,19 +65,32 @@
 
 
 
-<div class="row">
-	<% @intentions_intentions.each do |int| %>
+<% @intentions_intentions.each do |int| %>
 	<div class="page-header">
   		<h1>people who want to <strong> <%=int.name %></strong></h1>
 	</div>
+	<div class="row">
+
 		<% int.users.each do |user| %>
-			<%= user.name %>
+		<div class="col-xs-12 col-sm-6 col-md-3">
+		<div class="thumbnail">
+			<a href="/users/<%=user[:id]%>">
+				<h3><%= user.name %></h3>
+			</a>
+		</div>
+	</div>
+
+	
+		
+			
 		<% end  %>
 
 
-	<% end %>
+	
 
 </div>
+
+<% end %>
 
 
 
