@@ -48,13 +48,7 @@ class IntentionsController < ApplicationController
 
 	def show
 		@intention = Intention.find(params[:id])
-		@intention_words = @intention.words
-
-		
-		@related_intentions = []
-		@intention_words.each do |words|
-			@related_intentions << words.intentions 
-		end
+		@intentions_intentions = associate_intentions(@intention)
 
 	end
 
@@ -75,16 +69,25 @@ class IntentionsController < ApplicationController
 	  		# if it does, add it to the intention being created
 	  		# if not, create it and then add it
 
-	  		returned_word = Word.create(name: k)
+	  		word = Word.where(:name => k)
 
-			if returned_word.blank?
-				@intention.words << returned_word
+			if word.blank?
+				new_word = Word.create(name: k)
+				@intention.words << new_word
 			else
-				returned_word = Word.create(name: k)
-				@intention.words << returned_word
+				@intention.words << word
 	  		end
 	  	end
 
+	end
+
+
+	def associate_intentions(intention)
+		@words_intentions = []
+		intention.words.each do |word|
+			@words_intentions << word.intentions
+		end
+		return @words_intentions
 	end
 
 
