@@ -1,23 +1,14 @@
 <br>  
 
+<%# header %>
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
-      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><%="  " + current_user.name %><% end %></li>
     </ul>
 
 
       
-  
-<% if signed_in? %>
-
-    <% end %>
-  </li>
-</ul>
-
-
-
-
 
 
 <div class="page-header">
@@ -80,6 +71,7 @@
 	<% end %>
 
 </div>
+
 
 
 
