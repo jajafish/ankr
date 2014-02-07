@@ -21,86 +21,108 @@
 
     <ul class="nav nav-tabs">
       <li><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
-      <li><a href="/suggestions"> <i class="glyphicon glyphicon-ok"> </i></a></li>
-      <li class="active"> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+      <li class="active"> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><%="  " + current_user.name %><% end %></li>
     </ul>
 
 
 
+<br>
+
+
+<%# if the user himself has intentions %>
+<% if @user.intentions.count >= 1 %>
+
+
+  <%# if there are in fact matches for this person's intentions %>
+
+
+    <% if !no_suggestions %>
+
+      <% @user.intentions.each do |i| %>
+
+
+      <div class="jumbotron">
+        <h2><strong><%= i.name %></strong><h2>
+
+        <% i.users.each do |u| %>
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <a href="/users/<%=u[:id]%>">
+                  <div class="thumbnail">
+                    <h3><%=u.name%></h3>
+                  </div>
+                </a>
+              </div>  
+            <% end %>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        <%= button_to 'Delete Intention', intention_path(i.id), :method => :delete, :class => "btn btn-info btn-lg" %>
+
+      </div>
+      
+      <% end %>
 
 
 
-<div class="container">
+
+
+     
+        
+
+
+
+  <%# if there are no matches for this person's intentions %>
+
+
+    <% else %>
+
+      <p> SOrry friend! Add an intention --- or see if you like any of these or check back later !! </p>
+
+
+    <% end %>
 
 
 
 
-
-  <% if current_user.intentions.length >= 1 %>
-
-        <div class="page-header">
-          <h1>I'm <%=@user.name %> and I want to... </h1>
-        </div>
+<%# if the user has no intentions %>
 
 <% else %>
 
-      <div class="page-header">
-              <h1><%=@user.name.capitalize %></h1>
+  <h3>There is one quality which one must possess to win, and that is definiteness of purpose, the knowledge of what one wants, and a burning desire to possess it. --- Napoleon Hill</h3>
+
+  <br>
+
+    <div class="row">
+
+
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <a href="/intentions/">
+         <div class="thumbnail">
+            <h3>Add an intention</h3>
+         </div>
+        </a>
       </div>
+
+  </div>
+
+
 
 <% end %>
 
- 
 
-     
+
+
+
+
 
 
       
 
-
-        <div class="col-xs-12 col-sm-6 col-md-3">
-        <a href="/intentions/">
-        <div class="thumbnail">
-            <h3>Add an intention</h3>
-        </div>
-        </a>
-      </div>
-
-
-
-      	<% @user.intentions.each do |i| %>
-
-      	<div class="col-xs-12 col-sm-6 col-md-3">
-      		<div class="thumbnail">
-      			<a href="/intentions/<%=i[:id]%>">
-      				<h3><%=i.name%></h3>
-  				</a>
-            <p><%=i.users.count-1%> other people want to do this</p>
-
-            <li><%= link_to('Delete Intention', intention_path(i.id) , :method => :delete ) %></li>
-
-
-
-			</div>
-
-
-		</div>
-
-
-
-
-		<% end %>
-
-
-
-<div class="page-header">
-  <%= @user.email %>
-</div>
-
-
-
-
-</div>
 
 
 

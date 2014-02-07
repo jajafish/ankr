@@ -19,9 +19,9 @@ class IntentionsController < ApplicationController
 
 		if signed_in?
 
-		new_intention = params.require(:intention).permit(:name)
+			new_intention = params.require(:intention).permit(:name)
 
-		desired_intention = Intention.find_by_name(:name)
+			desired_intention = Intention.find_by_name(:name)
 
 	
 

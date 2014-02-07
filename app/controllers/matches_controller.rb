@@ -5,10 +5,5 @@ class MatchesController < ApplicationController
 		@matches = Match.all
 	end
 
-	def create
-
-		
-
-	end
 
 end
