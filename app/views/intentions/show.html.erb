@@ -70,9 +70,9 @@
 <div class="row">
 	<% @intentions_intentions.each do |int| %>
 	<div class="page-header">
-  		<h1>people who want to <strong> <%=@int.name %></strong></h1>
+  		<h1>people who want to <strong> <%=int.name %></strong></h1>
 	</div>
-		<% @int.users.each do |user| %>
+		<% int.users.each do |user| %>
 			<%= user.name %>
 		<% end  %>
 
