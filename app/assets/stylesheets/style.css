@@ -8,6 +8,13 @@ li #categories {
 }
 
 
+
+.scrolling {
+	position: fixed;
+	top: 0;
+}
+
+
 tbody {
 
 	font-size: 20px;

@@ -6,4 +6,12 @@ $(document).ready(function() {
 		$(this).find('.btn-lg').slideToggle();
 	});
 
+	$(window).scroll(function(){
+  $('.inner').toggleClass('scrolling', $(window).scrollTop() > $('#wizards').offset().top);
 });
+
+	
+});
+
+
+
