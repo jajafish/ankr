@@ -4,9 +4,19 @@ class IntentionsController < ApplicationController
 	# before_filter :check_intention_owner, only: [:destroy, :update, :edit]
 
 
+	def admin
+		@intentions = Intention.all
+		@users = User.all
+		@categories = Category.all
+
+	end
+
+
+
 	def index
 		@intentions = Intention.all
 		@intention = Intention.new
+		@categories = Category.all
 	end
 
 	def new
@@ -53,7 +63,7 @@ class IntentionsController < ApplicationController
 	end
 
 
-	
+
 
 
 

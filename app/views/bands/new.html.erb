@@ -1,0 +1,42 @@
+<br>  
+
+
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="/intentions"> <i class="glyphicon glyphicon-plus"></i></a></li>
+      <li> <%= link_to current_user do %><i class="glyphicon glyphicon-user"></i><% end %></li>
+    </ul>
+
+    <br>
+
+   
+
+
+
+
+    	<div class="container">
+
+
+
+
+	<%= form_for @band, :html=> {:id => 'new_form'} do |f| %>
+
+		<%= f.text_field :description, :autofocus=>true, class: "form-control input-lg", id: "new_int", placeholder: "Describe your musical goals." %>
+
+		<br>
+
+	</div>
+
+
+	<% end %>
+
+
+</div>
+
+
+
+
+
+
+
+
+

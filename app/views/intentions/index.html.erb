@@ -11,16 +11,6 @@
 
 
 
-<!-- 
-<ul class="pager">
-  <li><a href="#"><i class="glyphicon glyphicon-user"></i></a></li>
-  <li><a href="#"><i class="glyphicon glyphicon-plus"></i></a></li>
-</ul> -->
-
-
-
-
-
 
 <div class="container">
 
@@ -30,92 +20,105 @@
 
 
 
+ <div class="row">
 
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <%flash.each do|key,value|%>
-                <div class="alert alert-<%=key%>"> <%=value%> </div>
-        <%end%>
-     
+      <div class="col-md-4 col-sm-12">
+      
+         <a href="bands/new">
+         <div class="jumbotron">
+        <h2>Start a band</h2>
+         </div>
+        </a>
+
+        <a href="intentions/movie">
+        <div class="jumbotron">
+          <h2>Make a movie</h2>
+        </div>
+        </a>
+
+        <a href="intentions/company">
+        <div class="jumbotron">
+          <h2>Start a company</h2>
+        </div>
+        </a>
       </div>
-    </div>
 
 
-<br>
-<br>
-<br>
-
-<!--     <ul class="nav nav-tabs">
-  <li class="active"><a href="#">San Francisco</a></li>
-  <li>
-<% if signed_in? %>
-      <p class="navbar-text">
-        <%= link_to "Me", current_user %>
-      </p>
-      <p class="navbar-text">
-        <%= link_to "Sign out", signout_path, method: "delete" %>
-      </p>
-    <% else %>
-      <p class="navbar-text">
-        <%= link_to "Sign up", signup_path %>
-      </p>
-      <p class="navbar-text">
-        <%= link_to "Sign in", signin_path %>
-      </p>
-    <% end %>
-  </li>
-</ul> -->
+      <div class="col-md-8 col-sm-12">
 
 
-
-
-
-<!-- 
-<div class="jumbotron">
-  
-<div class="page-header">
-  <h1>People in San Francisco want to...</h1>
-</div>
-
- -->
+        <div class="container admin table-responsive">
+          <table class="table table-hover table-striped">
+            <thead>
+              <tr>
+                <th>People around you want to</th>
+            </thead>
+            <tbody>
+              <% @intentions.each do |int| %>
+                <tr>
+                  <td rowspan="<% int.words.length %>"><a href="</intentions/<%=int[:id]%>"><%=int.name %></a></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
 
 
 
 
 
-    <div class="row">
 
 
-
-
-      <% @intentions.reverse.each do |intention| %>
-
-        <div class="col-xs-12 col-sm-6 col-md-3">
-          <a href="/intentions/<%=intention[:id]%>">
-          <div class="thumbnail">
-            
-            <h3><%=intention.name%></h3>
-            <h2><%=intention.users.count%></h2>
-            
-
-
-          </div>
-          </a>
-
-       
-
-     
-     </div>
-      <% end %>
-    </div>
 
   </div>
 
 
-    
 
-</div>
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  

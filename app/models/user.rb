@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   has_many :goals
   has_many :intentions, through: :goals
 
+  has_many :rockouts
+  has_many :bands, through: :rockouts
+
 
   has_secure_password
 

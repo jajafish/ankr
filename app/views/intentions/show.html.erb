@@ -10,10 +10,8 @@
 
       
 <%# header for the main intention of this page %>
-
-<div class="page-header">
-  <h1>people who want to <strong> <%=@intention.name %></strong></h1>
-</div>
+<br>
+<br>
 
 
 <%# if the user is signed in  %>
@@ -47,48 +45,36 @@
 
 
 
-<%# make the basic row that will contain the people%>
-<div class="row">
-	<%# the each loop through the intention's users %>
-	<% @intention.users.each do |u| %>
-	<%# each user will be in a thumbnail inside a column %>
-	<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="thumbnail">
-			<a href="/users/<%=u[:id]%>">
-				<h3><%=u.name%></h3>
-			</a>
-		</div>
-	</div>
-	<% end %>
-</div>
 
 
 
 
+<% if @intentions_intentions != nil%>
 <% @intentions_intentions.each do |int| %>
 	<div class="page-header">
   		<h1>people who want to <strong> <%=int.name %></strong></h1>
 	</div>
-	<div class="row">
+
 
 		<% int.users.each do |user| %>
-		<div class="col-xs-12 col-sm-6 col-md-3">
-		<div class="thumbnail">
+		
+		<div class="jumbotron">
 			<a href="/users/<%=user[:id]%>">
 				<h3><%= user.name %></h3>
 			</a>
 		</div>
-	</div>
+	
 
 	
 		
 			
 		<% end  %>
+<% end %>
 
 
 	
 
-</div>
+
 
 <% end %>
 

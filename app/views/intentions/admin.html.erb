@@ -1,0 +1,35 @@
+<div class="container admin table-responsive">
+	<table class="table table-hover table-striped">
+		<thead>
+			<tr>
+				<th>Intention</th>
+				<th>Words</th>
+				<th>Categories</th>
+		</thead>
+		<tbody>
+			<% @intentions.each do |int| %>
+				<tr>
+					<td rowspan="<% int.words.length %>"><%=int.name %></td>
+					<% if not int.words.empty? %>
+					<td> <%= int.words[0].name %> </td>
+					<% end %>
+				</tr>
+				<% int.words.each do |word| %>
+					<tr>
+						<td></td>
+						<td><%=word.name %> <br>
+						<%= link_to('X', unlink_path(word.id, int.id) , :method => :delete, :class => "btn btn-info btn-sm" ) %>
+						</td>
+					</tr>
+				<% end %>
+
+			<% end %>
+
+
+
+
+
+
+		</tbody>
+	</table>
+</div>

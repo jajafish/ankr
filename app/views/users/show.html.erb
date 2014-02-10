@@ -29,11 +29,37 @@
 <br>
 
 
+<% if current_user != @user %>
 
-You can contact me at <%= mail_to(@user.email)%> if you want to...
+
+<h2>
+Please contact me at <%= mail_to(@user.email)%> 
+</br>if you want to...</h2>
 
 <br>
 <br>
+
+
+
+
+
+<% else %>
+
+<h2><%= mail_to(@user.email)%> </h2>
+
+
+
+
+
+
+
+
+<% end %>
+
+
+
+
+
 
 
 
@@ -46,18 +72,25 @@ You can contact me at <%= mail_to(@user.email)%> if you want to...
 
     <% if !no_suggestions %>
 
+
+
+
       <% @user.intentions.each do |i| %>
 
 
-      <a href="/intentions/<%=i[:id]%>"><div class="jumbotron">
+      <a href="/intentions/<%=i[:id]%>"><div class="jumbotron" id="intention">
         <h2><strong><%= i.name %></strong><h2>
 
 
+          <%= button_to('I dont want to do this', intention_path(i.id) , :method => :delete, :class => "btn btn-info btn-lg", :id => "dont_wanna" ) %>
 
       </div>
     </a>
+
       
       <% end %>
+
+
 
 
 

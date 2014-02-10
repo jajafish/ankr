@@ -1,14 +1,23 @@
 Ankr::Application.routes.draw do
 
-  resources :users, :intentions, :sessions, :matches, :suggestions
-
   root 'intentions#index'
+  get 'categories/art' => 'categories#art'
+  get 'categories/sports' => 'categories#sports'
+ 
+
+  get 'intentions/admin' => 'intentions#admin', :as => 'admin'
+  delete 'intentions/admin/:wordid/:intentionid' => 'words#unlink', :as => 'unlink'
+  resources :users, :intentions, :sessions, :matches, :suggestions, :categories, :bands
+
+
 
   get '/signup' => 'users#new'
   get '/signout' => 'sessions#destroy', via: :delete
   get '/signin' => 'sessions#new'
 
   post '/want_to/:id' => 'intentions#want_to', :as => 'want_to'
+
+
 
 
 end
